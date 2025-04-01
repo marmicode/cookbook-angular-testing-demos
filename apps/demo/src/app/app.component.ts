@@ -1,13 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CookbookSearch } from './fake-it-till-you-mock-it/cookbook-search';
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'mc-root',
+  imports: [CookbookSearch],
+  template: ` <mc-cookbook-search />`,
 })
-export class AppComponent {
-  title = 'demo';
-}
+export class AppComponent {}

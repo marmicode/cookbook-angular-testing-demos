@@ -12,7 +12,7 @@ export default [
         'error',
         {
           type: 'attribute',
-          prefix: 'app',
+          prefix: 'mc',
           style: 'camelCase',
         },
       ],
@@ -20,10 +20,11 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'app',
+          prefix: 'mc',
           style: 'kebab-case',
         },
       ],
+      '@angular-eslint/component-class-suffix': 'off',
     },
   },
   {
