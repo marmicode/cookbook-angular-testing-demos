@@ -2,7 +2,9 @@
   "name": "@cookbook-demos/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "test": "nx test --ui --watch"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "~19.2.0",
@@ -52,5 +54,8 @@
     "typescript-eslint": "^8.19.0",
     "vite": "^6.0.0",
     "vitest": "^3.0.0"
+  },
+  "stackblitz": {
+    "startCommand": "npm test"
   }
 }
