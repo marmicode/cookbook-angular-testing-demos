@@ -7,7 +7,7 @@ import {
   CookbookRepositoryFake,
   provideCookbookRepositoryFake,
 } from './cookbook-repository.fake';
-import { CookbookSearch } from './cookbook-search';
+import { CookbookSearch } from './cookbook-search.ng';
 import { cookbookMother } from './core/cookbook.mother';
 
 describe(CookbookSearch.name, () => {

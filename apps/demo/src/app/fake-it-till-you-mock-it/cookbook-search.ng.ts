@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { of } from 'rxjs';
-import { CookbookPreview } from './cookbook-preview';
+import { CookbookPreview } from './cookbook-preview.ng';
 import { CookbookRepository } from './cookbook-repository';
 
 @Component({

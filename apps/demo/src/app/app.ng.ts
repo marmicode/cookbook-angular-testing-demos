@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CookbookSearch } from './fake-it-till-you-mock-it/cookbook-search';
+import { CookbookSearch } from './fake-it-till-you-mock-it/cookbook-search.ng';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -7,4 +7,4 @@ import { CookbookSearch } from './fake-it-till-you-mock-it/cookbook-search';
   imports: [CookbookSearch],
   template: ` <mc-cookbook-search />`,
 })
-export class AppComponent {}
+export class App {}
