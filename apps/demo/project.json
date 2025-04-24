@@ -77,6 +77,15 @@
         "reportsDirectory": "../../coverage/apps/demo"
       }
     },
+    "typecheck": {
+      "dependsOn": ["typecheck-*"]
+    },
+    "typecheck-app": {
+      "command": "tsc -p {projectRoot}/tsconfig.app.json --noEmit"
+    },
+    "typecheck-spec": {
+      "command": "tsc -p {projectRoot}/tsconfig.spec.json --noEmit"
+    },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
