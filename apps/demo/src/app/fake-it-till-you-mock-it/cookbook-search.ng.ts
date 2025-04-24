@@ -43,6 +43,10 @@ import { CookbookRepository } from './cookbook-repository';
     @if (cookbooksResource.isLoading()) {
       <mat-spinner />
     }
+
+    @if (cookbooksResource.error()) {
+      <p role="alert">🙀 Oh no! Something went wrong.</p>
+    }
   `,
   styles: `
     :host {

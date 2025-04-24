@@ -1,5 +1,8 @@
 import { provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { render } from '@testing-library/angular';
+/* We are using the screen from DOM Testing Library because we don't
+ * want Angular Testing Library to trigger change detection as that could
+ * make us miss synchronization issues. */
 import { screen } from '@testing-library/dom';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it } from 'vitest';
@@ -21,16 +24,24 @@ describe(CookbookSearch.name, () => {
   });
 
   it('should filter by keywords', async () => {
-    await renderCookbookSearch();
+    const { typeKeywords } = await renderCookbookSearch();
 
-    await userEvent.type(
-      await screen.findByRole('textbox', { name: 'Keywords' }),
-      'Ottolenghi',
-    );
+    await typeKeywords('Ottolenghi');
 
     const els = await screen.findAllByRole('heading');
     expect.soft(els).toHaveLength(1);
     expect.soft(els[0]).toHaveTextContent('Ottolenghi Simple');
+  });
+
+  it('should show error message if the repository fails', async () => {
+    const { typeKeywords } = await renderCookbookSearch();
+
+    await typeKeywords(`Ottolenghi ${CookbookRepositoryFake.INVALID_TOKEN}`);
+
+    expect.soft(screen.queryAllByRole('heading')).toHaveLength(0);
+    expect
+      .soft(await screen.findByRole('alert'))
+      .toHaveTextContent('🙀 Oh no! Something went wrong.');
   });
 });
 
@@ -54,4 +65,13 @@ async function renderCookbookSearch() {
       });
     },
   });
+
+  return {
+    async typeKeywords(keywords: string) {
+      return await userEvent.type(
+        await screen.findByRole('textbox', { name: 'Keywords' }),
+        keywords,
+      );
+    },
+  };
 }
