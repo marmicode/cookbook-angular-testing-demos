@@ -7,7 +7,7 @@ import {
   MatCardSubtitle,
   MatCardTitle,
 } from '@angular/material/card';
-import { Cookbook } from './core/cookbook';
+import { Cookbook } from './cookbook';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,20 +21,26 @@ import { Cookbook } from './core/cookbook';
     MatCardTitle,
   ],
   template: `
-    <mat-card class="card">
-      <mat-card-header class="header">
-        <mat-card-title class="title" role="heading">{{
-          cookbook().title
-        }}</mat-card-title>
-        <mat-card-subtitle
-          >{{ cookbook().authors.join(', ') }}
-        </mat-card-subtitle>
-      </mat-card-header>
+    <mat-card class="card" role="article">
+      <a [href]="cookbook().previewUrl" target="_blank" class="card-link">
+        <mat-card-header class="header">
+          <mat-card-title class="title" role="heading">{{
+            cookbook().title
+          }}</mat-card-title>
+          <mat-card-subtitle
+            >{{ cookbook().authors.join(', ') }}
+          </mat-card-subtitle>
+        </mat-card-header>
 
-      @if (cookbook().pictureUri; as pictureUri) {
-        <img [alt]="cookbook().title" [src]="pictureUri" mat-card-image />
-      }
-
+        @if (cookbook().pictureUri; as pictureUri) {
+          <img
+            [alt]="cookbook().title"
+            [src]="pictureUri"
+            class="picture"
+            mat-card-image
+          />
+        }
+      </a>
       <mat-card-actions class="actions">
         <ng-content select="[data-slot='actions']" />
       </mat-card-actions>
@@ -48,8 +54,18 @@ import { Cookbook } from './core/cookbook';
 
     .card {
       height: 100%;
-      flex-direction: column;
-      justify-content: space-between;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      flex: 1;
+      cursor: pointer;
+    }
+
+    .card-link:hover {
+      text-decoration: none;
     }
 
     .header {
@@ -63,9 +79,10 @@ import { Cookbook } from './core/cookbook';
       width: 100%;
     }
 
-    img {
+    .picture {
       max-height: 200px;
-      object-fit: cover;
+      width: 100%;
+      object-fit: contain;
     }
 
     .actions {

@@ -1,12 +1,5 @@
-import '@testing-library/jest-dom';
+import './styles.css';
+import './test-setup-matchers';
+import { setupTestBed } from '@analogjs/vitest-angular/setup-testbed';
 
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting,
-} from '@angular/platform-browser-dynamic/testing';
-import { getTestBed } from '@angular/core/testing';
-
-getTestBed().initTestEnvironment(
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting(),
-);
+setupTestBed();
