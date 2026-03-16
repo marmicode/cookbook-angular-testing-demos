@@ -3,7 +3,7 @@ import viteConfig from './vite.config.mjs';
 import { playwright } from '@vitest/browser-playwright';
 import { preview } from '@vitest/browser-preview';
 
-const emulatedTestPatterns = ['src/**/(!*.browser).spec.ts'];
+const emulatedTestPatterns = ['src/**/!(*.browser).spec.ts'];
 const browserTestPatterns = ['src/**/*.browser.spec.ts'];
 
 const isStackblitz = !!process.versions['webcontainer'];
@@ -13,12 +13,12 @@ export default defineConfig({
   test: {
     watch: false,
     include: [],
-    setupFiles: ['src/test-setup.ts'],
     reporters: ['default'],
     coverage: {
       reportsDirectory: '../../coverage/apps/demo',
       provider: 'v8' as const,
     },
+    setupFiles: ['src/test-setup.ts'],
     testTimeout: 3_000,
     projects: [
       {
@@ -27,6 +27,7 @@ export default defineConfig({
           name: 'emulated',
           environment: 'jsdom',
           include: emulatedTestPatterns,
+          setupFiles: ['@testing-library/jest-dom/vitest'],
         },
       },
       {
