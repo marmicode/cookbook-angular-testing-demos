@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { recipeRouterHelper } from './recipe.router-helper';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -212,21 +213,33 @@ export class RecipeSelector {
   protected readonly recipes: CookbookRecipeInfo[] = [
     {
       title: 'How to Cook a Fake',
-      route: '/fake-it-till-you-mock-it',
+      route: recipeRouterHelper.fakeItTillYouMockItRoute(),
       externalUrl:
         'https://cookbook.marmicode.io/angular/testing/how-to-cook-a-fake',
     },
     {
       title: 'How to Progressively Migrate to Vitest Browser Mode',
-      route: '/vitest-browser-mode',
+      route: recipeRouterHelper.vitestBrowserModeRoute(),
       externalUrl:
         'https://cookbook.marmicode.io/angular/testing/how-to-migrate-to-vitest-browser-mode',
+    },
+    {
+      title: 'How to Test Debounce Timing',
+      route: recipeRouterHelper.debounceRoute(),
+      externalUrl:
+        'https://cookbook.marmicode.io/angular/testing/how-to-test-debounce',
+    },
+    {
+      title: 'How to Skip Timer Delays',
+      route: recipeRouterHelper.skipTimerDelaysRoute(),
+      externalUrl:
+        'https://cookbook.marmicode.io/angular/testing/how-to-skip-timer-delays',
     },
   ];
 }
 
 interface CookbookRecipeInfo {
   title: string;
-  route: string;
+  route: string[];
   externalUrl: string;
 }
