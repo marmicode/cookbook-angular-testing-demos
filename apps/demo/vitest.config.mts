@@ -1,9 +1,12 @@
 import { defineConfig } from 'vitest/config';
 import viteConfig from './vite.config.mjs';
 import { playwright } from '@vitest/browser-playwright';
+import { preview } from '@vitest/browser-preview';
 
-const testPatterns = ['src/**/*.spec.ts'];
+const emulatedTestPatterns = ['src/**/(!*.browser).spec.ts'];
 const browserTestPatterns = ['src/**/*.browser.spec.ts'];
+
+const isStackblitz = !!process.versions['webcontainer'];
 
 export default defineConfig({
   ...viteConfig,
@@ -23,8 +26,7 @@ export default defineConfig({
         test: {
           name: 'emulated',
           environment: 'jsdom',
-          include: testPatterns,
-          exclude: browserTestPatterns,
+          include: emulatedTestPatterns,
         },
       },
       {
@@ -34,8 +36,7 @@ export default defineConfig({
           include: browserTestPatterns,
           browser: {
             enabled: true,
-            headless: true,
-            provider: playwright(),
+            provider: isStackblitz ? preview() : playwright(),
             instances: [{ browser: 'chromium' }],
           },
         },
