@@ -19,7 +19,7 @@ export default defineConfig({
       provider: 'v8' as const,
     },
     setupFiles: ['src/test-setup.ts'],
-    testTimeout: 3_000,
+    testTimeout: 1_500,
     projects: [
       {
         extends: true,
