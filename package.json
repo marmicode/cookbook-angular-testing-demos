@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "playwright install chromium",
+    "postinstall": "ls /bin/jsh || playwright install chromium",
     "test": "nx test --ui --watch"
   },
   "private": true,
@@ -45,7 +45,7 @@
     "@testing-library/user-event": "14.6.1",
     "@types/node": "18.16.9",
     "@typescript-eslint/utils": "^8.33.1",
-    "@vitest/browser": "4.1.0",
+    "@vitest/browser": "workspace:*",
     "@vitest/browser-playwright": "4.1.0",
     "@vitest/browser-preview": "4.1.0",
     "@vitest/coverage-v8": "4.1.0",
@@ -76,6 +76,9 @@
       "lmdb",
       "msgpackr-extract",
       "nx"
-    ]
+    ],
+    "overrides": {
+      "@vitest/browser": "link:packages/vitest-browser"
+    }
   }
 }
