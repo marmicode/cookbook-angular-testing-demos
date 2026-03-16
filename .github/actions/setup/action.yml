@@ -6,8 +6,6 @@ runs:
   using: composite
   steps:
     - uses: nrwl/nx-set-shas@v3
-      with:
-        main-branch-name: angular-testing
 
     - uses: pnpm/action-setup@v2
       with:
