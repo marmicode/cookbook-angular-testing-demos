@@ -11,4 +11,7 @@ export default defineConfig({
     nxViteTsPaths(),
     nxCopyAssetsPlugin(['*.md']),
   ],
+  optimizeDeps: {
+    include: ['@angular/common'],
+  },
 });
